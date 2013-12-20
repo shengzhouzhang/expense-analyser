@@ -4,7 +4,6 @@
 
 Modules.FileLoader = {};
 
-
 Modules.FileLoader._check = function() {
 
   var result = false;
@@ -14,7 +13,7 @@ Modules.FileLoader._check = function() {
      result = true;
   }
 
-  Modules.Assert.assert(result, true);
+  Modules.Assert.assert(result);
 };
 
 Modules.FileLoader.load = function(file, callback) {
@@ -22,6 +21,9 @@ Modules.FileLoader.load = function(file, callback) {
   var reader, content;
 
   this._check();
+
+  Modules.Assert.assert(file instanceof File);
+  Modules.Assert.assert(callback instanceof Function);
 
   reader = new FileReader();
 
@@ -44,5 +46,3 @@ Modules.FileLoader.LoadHandler = function(event) {
     Modules.FileLoader.load(files[0], function(){});
   }
 };
-
-document.getElementById('files').addEventListener('change', Modules.FileLoader.LoadHandler, false);

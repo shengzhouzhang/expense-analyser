@@ -6,11 +6,8 @@ Modules.Assert = {};
 
 Modules.Assert.assert = function (value1, value2) {
 
-  if (value2 === undefined) {
-    value2 = true;
-  }
+  if (value1 !== (value2 === undefined ? true : value2)) {
 
-  if (value1 !== value2) {
     throw {name:'terminate-program', message:'Assert Failed!'};
   }
 };
